@@ -3,8 +3,17 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <app-server-element *ngFor = "let serverElement of serverElements" [element]="serverElement"></app-server-element>
+      <label>Server Content</label>
+      <input type="text" class="form-control" #nthElement>   
+      <button class="btn btn-primary" (click) = "changenthelement(nthElement.value)">Change nth Element</button>
+      <app-server-element *ngFor = "let serverElement of serverElements" [element]="serverElement">
+        <p>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+      </app-server-element>
     </div>
+    <label *ngIf="enableWarning" class="text-danger">Indexed server element not available</label>
   </div>
   
 </div>

@@ -9,12 +9,27 @@ import { CockpitComponent } from './cockpit/cockpit.component';
 })
 export class AppComponent {
   serverElements:item[] =  Array<item>();
-  
+  enableWarning: boolean;
   @ViewChild(CockpitComponent) cockPitComponentRef: Component;
   
   onAdding(data: item){
     
     console.log('cockpit Element State', this.cockPitComponentRef);
     this.serverElements.push(data);
+  }
+
+  changenthelement(index: string){
+    this.enableWarning =false;
+    if(Number(index) && Number(index) > 0){
+      if(this.serverElements[Number(index) - 1]){
+        this.serverElements[Number(index) -1].name = "Changed";
+      }
+      else{
+        this.enableWarning =true;
+      }
+    }
+    else{
+      this.enableWarning =true;
+    }
   }
 }
