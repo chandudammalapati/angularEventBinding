@@ -10,7 +10,7 @@ import { CockpitComponent } from './cockpit/cockpit.component';
 export class AppComponent {
   serverElements:item[] =  Array<item>();
   enableWarning: boolean;
-  @ViewChild(CockpitComponent) cockPitComponentRef: Component;
+  @ViewChild(CockpitComponent, {static:true}) cockPitComponentRef: Component;
   
   onAdding(data: item){
     
