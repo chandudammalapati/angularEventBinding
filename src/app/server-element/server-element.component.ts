@@ -10,7 +10,7 @@ import { item } from '../app.model'
 export class ServerElementComponent implements OnInit, OnChanges, AfterContentInit, AfterContentChecked {
   @Input() element: item;
   @Input() name: string;
-  @ViewChild('headingText') headingTextContent : ElementRef;
+  @ViewChild('headingText', {static: true}) headingTextContent : ElementRef;
   
   constructor() { 
     console.log("server element constructer has been initialized.");
