@@ -1,0 +1,35 @@
+// google-maps.mock.ts
+export class MockAutocompleteService {
+  getPlacePredictions = jasmine.createSpy('getPlacePredictions')
+    .and.callFake((request: google.maps.places.AutocompletionRequest, 
+                  callback: (predictions: google.maps.places.AutocompletePrediction[], 
+                            status: google.maps.places.PlacesServiceStatus) => void) => {
+      callback([], 'OK');
+    });
+}
+
+export class MockAutocomplete {
+  addListener = jasmine.createSpy('addListener');
+  getPlace = jasmine.createSpy('getPlace');
+}
+
+export const GoogleMapsMock = {
+  maps: {
+    places: {
+      AutocompleteService: MockAutocompleteService,
+      Autocomplete: MockAutocomplete,
+      PlacesServiceStatus: {
+        OK: 'OK',
+        ZERO_RESULTS: 'ZERO_RESULTS',
+        ERROR: 'ERROR'
+      }
+    },
+    Map: jasmine.createSpy('Map'),
+    Marker: jasmine.createSpy('Marker'),
+    LatLng: jasmine.createSpy('LatLng').and.callFake((lat: number, lng: number) => ({ lat, lng })),
+    event: {
+      addListener: jasmine.createSpy('addListener'),
+      removeListener: jasmine.createSpy('removeListener')
+    }
+  }
+};
